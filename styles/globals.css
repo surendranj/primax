@@ -1,26 +1,76 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    /* Scroll thumb styles */
+    *::-webkit-scrollbar {
+        width: 0.4rem;
+        height: 0.4rem;
+    }
+    *::-webkit-scrollbar-thumb {
+        background: #ff5e5b;
+        border-radius: 1rem;
+    }
+    *::-webkit-scrollbar-thumb:active {
+        background-color: #fff;
+    }
+    *::-webkit-scrollbar-thumb:hover {
+        background: #fff;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+        opacity: 0.8;
+    }
+
+    /* Scroll track styles (Background) */
+    *::-webkit-scrollbar-track {
+        background: #0a0908;
+    }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@layer base {
+    body {
+        @apply w-full bg-gradient-to-b from-black to-[#0a0908e6] text-white;
+    }
+    main {
+        @apply min-h-screen;
+    }
+
+    section {
+        @apply relative;
+    }
+
+    h1 {
+        @apply text-3xl font-semibold;
+    }
+
+    h2 {
+        @apply text-2xl;
+    }
+
+    h3 {
+        @apply text-xl;
+    }
 }
 
-* {
-  box-sizing: border-box;
-}
+@layer components {
+    .svg {
+        @apply w-6 h-6 fill-orange;
+    }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+    .container {
+        @apply w-full max-w-[1200px] mx-auto px-4 tablet:px-10;
+    }
+
+    .gradient {
+        @apply bg-gradient-to-b from-[#0a090880];
+    }
+    .account-table {
+        @apply table-fixed w-full border-separate border-spacing-y-4 mb-4;
+    }
+    .account-div {
+        @apply w-full max-w-[500px];
+    }
+    .table-data {
+        @apply w-20;
+    }
 }

@@ -1,6 +1,38 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
+import { Provider } from "react-redux";
+import store from "../src/app/store";
+import Layout from "../src/components/Layout/Layout";
+import { QueryClientProvider, Hydrate, QueryClient, DehydratedState } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useState } from "react";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedState }>) {
+    const [queryClient] = useState(
+        () =>
+            new QueryClient({
+                defaultOptions: {
+                    queries: {
+                        // refetchOnWindowFocus: false,
+                        // refetchOnMount: false,
+                        // staleTime: 1000 * 60 * 60 * 24,
+                    },
+                },
+            })
+    );
+
+    return (
+        <Provider store={store}>
+            <QueryClientProvider client={queryClient}>
+                <Hydrate state={pageProps.dehydratedState}>
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
+                </Hydrate>
+                <ReactQueryDevtools initialIsOpen={false} />
+            </QueryClientProvider>
+        </Provider>
+    );
 }
+
+export default MyApp;
