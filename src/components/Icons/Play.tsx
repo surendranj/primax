@@ -10,7 +10,7 @@ const Play = ({ className }: PlayProps) => {
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            className={`svg fill-transparent stroke-orange w-14 h-14 cursor-pointer ${className ? className : ""}`}
+            className={`svg fill-transparent stroke-orange cursor-pointer ${className ? className : ""}`}
         >
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             <path

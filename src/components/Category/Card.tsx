@@ -59,8 +59,8 @@ const Card = ({ movie, mediaType }: CardProps) => {
                     <span className="text-orange text-[10px] font-bold">EN</span>
                 </div>
             </div>
-            <motion.button whileHover={{ scale: 1.1 }} onClick={handleClick} className="absolute bottom-2 left-3 ">
-                <Play className="w-8 h-8" />
+            <motion.button whileHover={{ scale: 1.1 }} onClick={handleClick} className="absolute bottom-2 left-2 ">
+                <Play className="w-10 h-10" />
             </motion.button>
         </motion.div>
     );

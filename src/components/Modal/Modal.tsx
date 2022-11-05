@@ -9,13 +9,12 @@ import { Movie } from "../../../types";
 import Rating from "../Icons/Rating";
 // import Plus from "../Icons/Plus";
 import Close from "../Icons/Close";
-import Spinner from "../Icons/Spinner";
 import useDontScrollModal from "../../hooks/useDontScrollModal";
 
 const Modal = () => {
     const { open, media, trailerUrl } = useAppSelector((state) => state.modal);
     const dispatch = useAppDispatch();
-    const { isLoading, data } = useQuery<Movie, Error>(
+    const { data } = useQuery<Movie, Error>(
         [media?.mediaType, media?.id],
         () => getVideos(media?.mediaType, media?.id),
         {
@@ -50,23 +49,20 @@ const Modal = () => {
                     exit="hidden"
                     className="fixed z-50 w-full min-h-screen top-0 left-0 bg-black/70 backdrop-blur-md laptop:flex flex-col justify-center gap-4 "
                 >
-                    {isLoading ? (
-                        <Spinner />
-                    ) : (
-                        <div className="w-full laptop:w-[50vw] mx-auto ">
-                            <div className="relative pt-[56.25%]">
-                                <ReactPlayer
-                                    url={trailerUrl ? trailerUrl : ""}
-                                    width="100%"
-                                    height="100%"
-                                    style={{ position: "absolute", top: 0, left: 0 }}
-                                    playing
-                                    // muted
-                                    controls
-                                />
-                            </div>
+                    <div className="w-full laptop:w-[50vw] mx-auto ">
+                        <div className="relative pt-[56.25%]">
+                            <ReactPlayer
+                                url={trailerUrl ? trailerUrl : ""}
+                                width="100%"
+                                height="100%"
+                                style={{ position: "absolute", top: 0, left: 0 }}
+                                playing
+                                // muted
+                                controls
+                            />
                         </div>
-                    )}
+                    </div>
+
                     <div className="container pt-4 ">
                         <div className="flex items-center gap-2 mb-4">
                             <h1>{data?.original_name || data?.title}</h1>

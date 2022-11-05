@@ -16,7 +16,6 @@ const Layout = ({ children }: LayoutProps) => {
     const isNotAuthRoute = router.asPath !== "/signin" && router.asPath !== "/signup";
     const isNotSubscriptionRoute = router.asPath !== "/subscription";
     const isNotAccRoute = router.asPath !== "/account";
-
     return (
         <>
             <Head>

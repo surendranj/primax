@@ -55,7 +55,7 @@ const Overview = ({ clickDirection, data, currentMovie, handleLeftClick, handleR
                     <Chevron />
                 </Button>
                 <Button handleClick={handleOpenModal}>
-                    <Play />
+                    <Play className="w-14 h-14" />
                 </Button>
                 <Button handleClick={handleRightClick}>
                     <Chevron className="rotate-180" />
