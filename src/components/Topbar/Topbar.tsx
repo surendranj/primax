@@ -3,8 +3,9 @@ import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Logo from "./Logo";
 import Link from "next/link";
-import Avatar from "../Icons/Avatar";
 import SearchBar from "../SearchBar/SearchBar";
+
+import UserNav from "./UserNav";
 
 export const links = [
     { name: "Home", href: "/" },
@@ -16,6 +17,7 @@ export const links = [
 const Topbar = () => {
     const { scrollYProgress } = useScroll();
     const backgroundColor = useTransform(scrollYProgress, [0, 0.05], ["hsla(0,0,0,0)", "#0A0908"]);
+
     return (
         <motion.nav style={{ backgroundColor }} className="fixed z-40 w-full">
             <ul className="container flex justify-between items-center">
@@ -33,7 +35,7 @@ const Topbar = () => {
                     ))}
                 </ul>
                 <li>
-                    <Avatar />
+                    <UserNav />
                 </li>
             </ul>
         </motion.nav>

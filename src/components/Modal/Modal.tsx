@@ -10,6 +10,7 @@ import Rating from "../Icons/Rating";
 // import Plus from "../Icons/Plus";
 import Close from "../Icons/Close";
 import useDontScrollModal from "../../hooks/useDontScrollModal";
+import Plus from "../Icons/Plus";
 
 const Modal = () => {
     const { open, media, trailerUrl } = useAppSelector((state) => state.modal);
@@ -73,7 +74,10 @@ const Modal = () => {
                             />
                         </div>
                         <p className="text-sm tracking-wider font-extralight">{data?.overview}</p>
-                        <div className=" flex items-center mt-8 gap-2">
+                        <div className=" flex items-center mt-8 gap-4">
+                            <motion.button whileTap={{ scale: 0.9 }} className="w-10 h-10 cursor-pointer">
+                                <Plus />
+                            </motion.button>
                             <div className="flex flex-wrap gap-2">
                                 {data?.genres.map((genre) => (
                                     <span key={genre.id} className="px-3 py-1 border border-grey rounded-md text-xs">

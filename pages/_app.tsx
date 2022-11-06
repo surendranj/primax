@@ -8,18 +8,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useState } from "react";
 
 function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedState }>) {
-    const [queryClient] = useState(
-        () =>
-            new QueryClient({
-                defaultOptions: {
-                    queries: {
-                        // refetchOnWindowFocus: false,
-                        // refetchOnMount: false,
-                        // staleTime: 1000 * 60 * 60 * 24,
-                    },
-                },
-            })
-    );
+    const [queryClient] = useState(() => new QueryClient());
 
     return (
         <Provider store={store}>
