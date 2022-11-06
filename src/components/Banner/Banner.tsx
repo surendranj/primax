@@ -56,7 +56,7 @@ const Banner = () => {
     }
 
     return (
-        <section className="w-full h-screen tablet:max-h-[40vh] laptop:max-h-screen overflow-hidden">
+        <section className="w-full h-screen tablet:max-h-[40vh] laptop:max-h-screen overflow-hidden mb-20">
             {/* Poster */}
             <Poster clickDirection={clickDirection} currentMovie={currentMovie} data={data} />
             {/* Movie info */}

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const Footer = () => {
     return (
-        <footer className="relative w-full h-full pb-20 bg-black py-10">
+        <footer className="relative w-full h-full pb-20 bg-black py-10 mt-20">
             <div className="container max-w-[300px]">
                 <h4 className="text-grey w-full text-center">Data Source</h4>
                 <motion.a whileHover={{ opacity: 0.7 }} href="https://www.themoviedb.org/">

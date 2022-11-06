@@ -31,7 +31,7 @@ const Category = ({ queryResult, categoryName }: CategoryProps) => {
     }
 
     return (
-        <motion.section className="container mb-20 tablet:mt-20 ">
+        <motion.section className="container mb-14 ">
             <h2 className=" mb-5">{categoryName}</h2>
 
             <motion.div
