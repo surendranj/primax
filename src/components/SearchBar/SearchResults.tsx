@@ -48,7 +48,7 @@ const SearchResults = ({ searchTerm, debouncedSearchTerm }: SearchResultsProps) 
                     animate={{ x: 0, opacity: 1 }}
                     exit={{ x: -20, opacity: 0 }}
                     key={debouncedSearchTerm}
-                    className="pt-4 pb-40 tablet:pb-6 px-4 absolute overflow-y-scroll top-12 left-0 tablet:left-44 laptop:left-52 desktop:left-72 bg-black w-full tablet:w-1/2  h-screen tablet:h-[50vh] laptop:h-[80vh] rounded-md flex flex-col items-center gap-7"
+                    className="pt-4 pb-40 tablet:pb-6 px-4 absolute overflow-y-scroll top-12 left-0 tablet:left-44 laptop:left-52 desktop:left-72 bg-black w-full tablet:w-1/2 desktop:w-[400px]  h-screen tablet:h-[50vh] laptop:h-[80vh] rounded-md flex flex-col items-center gap-7"
                 >
                     <motion.ul className="flex flex-col gap-4 w-full">
                         {filteredData?.map((movie) => (
