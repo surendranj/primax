@@ -57,9 +57,9 @@ const Layout = ({ children }: LayoutProps) => {
             </Head>
 
             <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
-                <div key={router.pathname} onClick={handleClick}>
+                <div key={router.pathname}>
                     {isNotAuthRoute && <Topbar />}
-                    <main>{children}</main>
+                    <main onClick={handleClick}>{children}</main>
                     {isNotAuthRoute && isNotSubscriptionRoute && isNotAccRoute && <Footer />}
                     {isNotAuthRoute && <Bottombar />}
                 </div>
