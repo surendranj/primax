@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedS
                         <Component {...pageProps} />
                     </Layout>
                 </Hydrate>
-                {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+                <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
         </Provider>
     );
