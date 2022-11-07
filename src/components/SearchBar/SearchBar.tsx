@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import useDebounce from "../../hooks/useDebounce";
 import SearchIcon from "../Icons/Search";
 import Close from "../Icons/Close";
 import SearchResults from "./SearchResults";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { closeSearch, openSearch } from "../../features/search/searchSlice";
 
 const SearchBar = () => {
-    const [searchTerm, setSearchTerm] = useState("");
+    const searchTerm = useAppSelector((state) => state.search);
+    const dispatch = useAppDispatch();
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(e.target.value);
+        dispatch(openSearch(e.target.value));
     };
 
     const delay = searchTerm ? 500 : 0;
@@ -23,7 +26,7 @@ const SearchBar = () => {
                     className="focus:outline-none rounded-full w-full px-2 text-orange  "
                 />
                 {searchTerm ? (
-                    <button onClick={() => setSearchTerm("")} className="absolute inset-y-0 right-1 w-4 h-full">
+                    <button onClick={() => dispatch(closeSearch())} className="absolute inset-y-0 right-1 w-4 h-full">
                         <Close className="w-full h-full" />
                     </button>
                 ) : (

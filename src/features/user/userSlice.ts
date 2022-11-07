@@ -23,6 +23,7 @@ const user = createSlice({
             state = { user: false, userInfo: null };
             return state;
         },
+        
     },
 });
 

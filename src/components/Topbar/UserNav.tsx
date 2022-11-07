@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAppSelector } from "../../app/hooks";
 import { AnimatePresence, motion } from "framer-motion";
 import AvatarButton, { CloseBtn, SignInUpBtn } from "./TopbarButtons";
@@ -8,10 +8,10 @@ import Link from "next/link";
 
 const UserNav = () => {
     const { user, userInfo } = useAppSelector((state) => state.user);
-    const [open, setOpen] = useState(false);
+    const open = useAppSelector((state) => state.userNav);
     return (
         <>
-            <AvatarButton open={open} setOpen={setOpen} />
+            <AvatarButton />
             <AnimatePresence>
                 {open && (
                     <motion.div
@@ -40,9 +40,9 @@ const UserNav = () => {
                                     <Link href={"/mylist"}>My List</Link>
                                 </motion.div>
 
-                                <SignInUpBtn setOpen={setOpen} />
+                                <SignInUpBtn />
 
-                                <CloseBtn setOpen={setOpen} />
+                                <CloseBtn />
                             </>
                         )}
                     </motion.div>

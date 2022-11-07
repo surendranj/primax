@@ -1,29 +1,29 @@
 import React from "react";
 import Avatar from "../Icons/Avatar";
 import { motion } from "framer-motion";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 import Close from "../Icons/Close";
 import { auth } from "../../firebase/firebase";
+import { closeUserNav, toggleUserNav } from "../../features/userNav/userNavSlice";
 
-type ButtonProps = {
-    open?: boolean;
-    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-const AvatarButton = ({ open, setOpen }: ButtonProps) => {
+const AvatarButton = () => {
+    const dispatch = useAppDispatch();
     return (
-        <button onClick={() => setOpen(!open)}>
+        <button onClick={() => dispatch(toggleUserNav())}>
             <Avatar />
         </button>
     );
 };
 
-export const SignInUpBtn = ({ setOpen }: ButtonProps) => {
+export const SignInUpBtn = () => {
     const router = useRouter();
     const { user } = useAppSelector((state) => state.user);
+    const dispatch = useAppDispatch();
+
     const handleClick = () => {
-        setOpen(false);
+        dispatch(closeUserNav());
         if (user) {
             signOut(auth);
             router.reload();
@@ -42,9 +42,11 @@ export const SignInUpBtn = ({ setOpen }: ButtonProps) => {
     );
 };
 
-export const CloseBtn = ({ setOpen }: ButtonProps) => {
+export const CloseBtn = () => {
+    const dispatch = useAppDispatch();
+
     return (
-        <button onClick={() => setOpen(false)}>
+        <button onClick={() => dispatch(closeUserNav())}>
             <Close className="absolute top-1 right-1 w-5 h-5" />
         </button>
     );

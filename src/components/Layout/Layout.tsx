@@ -6,10 +6,12 @@ import React, { useEffect } from "react";
 import Topbar from "../Topbar/Topbar";
 import Bottombar from "../Bottombar/Bottombar";
 import Footer from "../Footer/Footer";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { signInUser, signOutUser } from "../../features/user/userSlice";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
+import { closeSearch } from "../../features/search/searchSlice";
+import { closeUserNav } from "../../features/userNav/userNavSlice";
 
 type LayoutProps = {
     children: React.ReactNode;
@@ -33,6 +35,16 @@ const Layout = ({ children }: LayoutProps) => {
         });
     }, [dispatch]);
 
+    const { search, userNav } = useAppSelector((state) => state);
+    const handleClick = () => {
+        if (search) {
+            dispatch(closeSearch());
+        }
+        if (userNav) {
+            dispatch(closeUserNav());
+        }
+    };
+
     return (
         <>
             <Head>
@@ -42,7 +54,7 @@ const Layout = ({ children }: LayoutProps) => {
             </Head>
 
             <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
-                <div key={router.pathname}>
+                <div key={router.pathname} onClick={handleClick}>
                     {isNotAuthRoute && <Topbar />}
                     <main>{children}</main>
                     {isNotAuthRoute && isNotSubscriptionRoute && isNotAccRoute && <Footer />}
