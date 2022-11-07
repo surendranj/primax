@@ -15,8 +15,6 @@ const Home = () => {
                 queryKey: [el.name],
                 queryFn: () => getMovie(el.url),
                 refetchOnWindowFocus: false,
-                refetchOnMount: false,
-                staleTime: 1000 * 60 * 60 * 24,
             };
         }),
     });

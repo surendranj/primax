@@ -40,13 +40,6 @@ const Auth = () => {
                     <Spinner />
                 </div>
             )}
-
-            {/* <div className="relative z-10 container h-full w-full max-w-[500px] flex flex-col justify-center overflow-hidden">
-                <motion.div variants={authMotion} initial="hidden" animate="visible" exit="exit">
-                    <AuthForm />
-                    <SignInOrSignUp />
-                </motion.div>
-            </div> */}
         </section>
     );
 };

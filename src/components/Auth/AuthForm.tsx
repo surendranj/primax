@@ -8,7 +8,8 @@ import { FirebaseError } from "firebase/app";
 import { useState } from "react";
 import AuthError from "./AuthError";
 import Spinner from "../Icons/Spinner";
-import { auth } from "../../firebase/firebase";
+import { auth, db } from "../../firebase/firebase";
+import { doc, FirestoreError, setDoc } from "firebase/firestore";
 
 const AuthForm = () => {
     const router = useRouter();
@@ -29,13 +30,17 @@ const AuthForm = () => {
     async function signup(values: { email: string; password: string }) {
         try {
             await createUserWithEmailAndPassword(auth, values.email, values.password);
+            await setDoc(doc(db, "users", values.email), {
+                movieList: [],
+            });
             router.push("/");
         } catch (error) {
-            if (error instanceof FirebaseError) {
+            if (error instanceof FirebaseError || error instanceof FirestoreError) {
                 setError(error.code);
             }
         }
     }
+
     return (
         <Formik
             initialValues={{ email: "", password: "" }}

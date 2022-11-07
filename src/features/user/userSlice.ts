@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type UserInfo = {
     email: string;
+    id: string
 };
 
 interface InitialState {

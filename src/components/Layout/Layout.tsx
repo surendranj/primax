@@ -24,18 +24,21 @@ const Layout = ({ children }: LayoutProps) => {
     const isNotAccRoute = router.asPath !== "/account";
 
     const dispatch = useAppDispatch();
+    const { user, search, userNav } = useAppSelector((state) => state);
 
     useEffect(() => {
+        if (user.user) {
+            return;
+        }
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                dispatch(signInUser({ email: user.email! }));
+                dispatch(signInUser({ email: user.email!, id: user.uid }));
             } else {
                 dispatch(signOutUser());
             }
         });
-    }, [dispatch]);
+    }, [dispatch, user.user]);
 
-    const { search, userNav } = useAppSelector((state) => state);
     const handleClick = () => {
         if (search) {
             dispatch(closeSearch());
