@@ -44,7 +44,7 @@ const Poster = ({ clickDirection, data, currentMovie }: PosterProps) => {
                     fill
                     className="object-cover"
                     priority={true}
-                    sizes="(max-width: 1280px) 100%"
+                    sizes="100vw"
                 />
             </motion.div>
         </AnimatePresence>

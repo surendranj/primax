@@ -33,7 +33,7 @@ const Pagination = ({ queryKey, url, mediaType, pageTitle }: PaginationProps) =>
     const { data } = useQuery([queryKey, pageNumber], () => getMovie(`${url}${pageNumber}`), {
         refetchOnWindowFocus: false,
         refetchOnMount: false,
-        staleTime: 1000 * 60 * 60 * 24,
+        staleTime: 1000 * 60 * 60 * 24 * 7,
     });
 
     const [clickDirection, setClickDirection] = useState<string | null>(null);

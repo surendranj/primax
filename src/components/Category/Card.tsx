@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
 import { Movie } from "../../../types";
-import { IMAGE_BASE_URL } from "../../utils/requests";
 import Rating from "../Icons/Rating";
 import { motion, Variants } from "framer-motion";
 import { useAppDispatch } from "../../app/hooks";
@@ -30,17 +29,18 @@ const Card = ({ movie, mediaType }: CardProps) => {
         <motion.div
             variants={cardMotion}
             whileHover="hover"
-            className="relative w-48 h-72 rounded-lg shrink-0 overflow-hidden cursor-pointer "
+            className="relative w-52 h-72 rounded-lg shrink-0 overflow-hidden cursor-pointer "
         >
             {/* Poster */}
             <motion.div variants={posterMotion} className="relative w-full h-full ">
                 <Image
-                    src={`${IMAGE_BASE_URL}${movie.poster_path}`}
+                    src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
                     alt="poster"
                     fill
                     className="object-cover"
                     priority={true}
-                    sizes="(max-width: 1280px) 100%"
+                    sizes="(max-width: 768px) 50vw,
+                    33vw"
                 />
             </motion.div>
 

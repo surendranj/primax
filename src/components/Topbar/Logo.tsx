@@ -12,7 +12,8 @@ const Logo = () => {
                         alt="logo"
                         fill
                         className="object-contain"
-                        sizes="(max-width: 1280px) 100px"
+                        sizes="(max-width: 768px) 50vw,
+                        10vw"
                         priority
                     />
                 </div>
