@@ -16,7 +16,7 @@ const KidsPage = () => {
     );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     const queryClient = new QueryClient();
 
     await queryClient.prefetchQuery([queryKey, pageNumber], () => getMovie(`${url}${pageNumber}`));

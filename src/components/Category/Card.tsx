@@ -17,7 +17,8 @@ const cardMotion: Variants = {
 };
 
 const posterMotion: Variants = {
-    hover: { opacity: 0.3, scale: 1.1, transition: { type: "tween" } },
+    // hover: { opacity: 0.3, scale: 1.1, transition: { type: "tween" } },
+    hover: {},
 };
 const Card = ({ movie, mediaType }: CardProps) => {
     const dispatch = useAppDispatch();
@@ -29,7 +30,7 @@ const Card = ({ movie, mediaType }: CardProps) => {
         <motion.div
             variants={cardMotion}
             whileHover="hover"
-            className="relative w-52 h-72 rounded-lg shrink-0 overflow-hidden cursor-pointer "
+            className="relative w-52 h-72 rounded-lg shrink-0 overflow-hidden "
         >
             {/* Poster */}
             <motion.div variants={posterMotion} className="relative w-full h-full ">
@@ -44,7 +45,7 @@ const Card = ({ movie, mediaType }: CardProps) => {
                 />
             </motion.div>
 
-            <div className="absolute top-0 left-0 w-full h-full p-2 gradient">
+            <div className="absolute top-0 left-0 w-full h-full p-2 bg-gradient-to-b from-black via-transparent to-black">
                 <div className="w-full flex justify-between items-center">
                     {movie.vote_average ? (
                         <Rating

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { closeModal, setTrailerUrl } from "../../features/modal/modalSlice";
 import { AnimatePresence, motion, Variants } from "framer-motion";
@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import { arrayRemove, arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import { MovieDoc } from "../MyList/MyList";
+import Spinner from "../Icons/Spinner";
 
 const Modal = () => {
     const { open, media, trailerUrl } = useAppSelector((state) => state.modal);
@@ -118,6 +119,14 @@ const Modal = () => {
         return () => clearTimeout(timer);
     }, [msg]);
 
+    const playerRef = useRef<ReactPlayer>(null);
+    const [playerReady, setPlayerReady] = useState(false);
+
+    useEffect(() => {
+        !open && setPlayerReady(false);
+    }, [open]);
+
+    useEffect(() => console.log(playerReady));
     return (
         <AnimatePresence mode="wait">
             {open ? (
@@ -146,18 +155,24 @@ const Modal = () => {
                         )}
                     </AnimatePresence>
 
-                    <div className="w-full laptop:w-[50vw] mx-auto ">
-                        <div className="relative pt-[56.25%]">
+                    <div className="relative w-full laptop:w-[50vw] mx-auto ">
+                        <div className={`relative pt-[56.25%] ${playerReady ? "visible" : "invisible"}`}>
                             <ReactPlayer
+                                ref={playerRef}
                                 url={trailerUrl ? trailerUrl : ""}
                                 width="100%"
                                 height="100%"
                                 style={{ position: "absolute", top: 0, left: 0 }}
                                 playing
-                                // muted
                                 controls
+                                onReady={() => setPlayerReady(true)}
                             />
                         </div>
+                        {!playerReady && (
+                            <div className="absolute inset-0 flex justify-center items-center">
+                                <Spinner />
+                            </div>
+                        )}
                     </div>
 
                     <div className="container pt-4 ">

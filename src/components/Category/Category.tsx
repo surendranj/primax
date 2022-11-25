@@ -39,13 +39,13 @@ const Category = ({ queryResult, categoryName }: CategoryProps) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ margin: "30px", once: true }}
                 transition={{ duration: 1 }}
-                className="relative w-full overflow-hidden"
+                className="relative w-full overflow-hidden "
             >
                 <motion.div
                     ref={carousel}
                     drag="x"
                     dragConstraints={{ left: -scrollWidth + 192, right: 0 }}
-                    className="flex gap-4"
+                    className="flex gap-4 hover:cursor-grab active:cursor-grabbing"
                 >
                     {data!.results.map((movie) => (
                         <Card
