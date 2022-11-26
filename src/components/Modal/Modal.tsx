@@ -18,6 +18,8 @@ import Spinner from "../Icons/Spinner";
 
 const Modal = () => {
     const { open, media, trailerUrl } = useAppSelector((state) => state.modal);
+    const { user, userInfo } = useAppSelector((state) => state.user);
+
     const dispatch = useAppDispatch();
     const { data } = useQuery<Movie, Error>(
         [media?.mediaType, media?.id],
@@ -45,7 +47,7 @@ const Modal = () => {
         dispatch(closeModal());
         setIsMovieInList(undefined);
         setMsg("");
-        if (router.asPath === "/mylist") {
+        if (user && router.asPath === "/mylist") {
             router.reload();
         }
     };
@@ -79,7 +81,6 @@ const Modal = () => {
 
     // add movie to user list
     const router = useRouter();
-    const { user, userInfo } = useAppSelector((state) => state.user);
     const addMovie = async () => {
         if (user) {
             try {
@@ -126,7 +127,6 @@ const Modal = () => {
         !open && setPlayerReady(false);
     }, [open]);
 
-    useEffect(() => console.log(playerReady));
     return (
         <AnimatePresence mode="wait">
             {open ? (

@@ -7,7 +7,7 @@ const HomePage = () => {
     return <Home />;
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const queryClient = new QueryClient();
     const request = Object.values(requests);
     await Promise.all(

@@ -7,7 +7,7 @@ const SignInOrSignUp = () => {
     const router = useRouter();
     const isLoginRoute = router.asPath === "/signin";
     return (
-        <div className="flex gap-2 mt-4 text-sm text-grey">
+        <div className="relative flex gap-2 mt-4 text-sm text-grey">
             {isLoginRoute ? <p>New here?</p> : <p>Have an account?</p>}
             <motion.div whileHover={{ color: "#fff" }}>
                 {isLoginRoute ? (
@@ -19,6 +19,13 @@ const SignInOrSignUp = () => {
                         Sign In
                     </Link>
                 )}
+            </motion.div>
+            <motion.div
+                whileHover={{ color: "#fff" }}
+                className="ml-2 hover:cursor-pointer"
+                onClick={() => router.push("/")}
+            >
+                Cancel
             </motion.div>
         </div>
     );
