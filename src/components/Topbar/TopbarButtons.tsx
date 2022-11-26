@@ -26,7 +26,7 @@ export const SignInUpBtn = () => {
         dispatch(closeUserNav());
         if (user) {
             signOut(auth);
-            router.reload();
+            router.push("/");
         } else {
             router.push("/signin");
         }

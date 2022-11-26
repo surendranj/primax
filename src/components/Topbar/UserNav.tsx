@@ -1,14 +1,16 @@
 import React from "react";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { AnimatePresence, motion } from "framer-motion";
 import AvatarButton, { CloseBtn, SignInUpBtn } from "./TopbarButtons";
 import Spinner from "../Icons/Spinner";
 import Avatar from "../Icons/Avatar";
 import Link from "next/link";
+import { closeUserNav } from "../../features/userNav/userNavSlice";
 
 const UserNav = () => {
     const { user, userInfo } = useAppSelector((state) => state.user);
     const open = useAppSelector((state) => state.userNav);
+    const dispatch = useAppDispatch();
     return (
         <>
             <AvatarButton />
@@ -37,7 +39,9 @@ const UserNav = () => {
                                     whileTap={{ scale: 0.9 }}
                                     className="self-start"
                                 >
-                                    <Link href={"/mylist"}>My List</Link>
+                                    <Link href={"/mylist"} onClick={() => dispatch(closeUserNav())}>
+                                        My List
+                                    </Link>
                                 </motion.div>
 
                                 <SignInUpBtn />
